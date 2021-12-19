@@ -1,6 +1,5 @@
-output/*
-figures/*
 *.pdf
+*.png
 __pycache__
 automated-report-env
 .DS_Store
