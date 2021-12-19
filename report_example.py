@@ -23,10 +23,12 @@ def get_data_dict():
         "date": date
     }
     example_df = pd.DataFrame({
-        "column1": ["A", "B"],
-        "column2": [1, 2],
+        "column1": ["A", "B", "C", "D", "E", "F", "G"],
+        "column2": [1, 2, 3, 4, 5, 6, 7],
+        "column3": ["red", "blue", "orange", "green", "yellow", "purple", "pink"],
+        "column4": [7, 6, 5, 4, 3, 2, 1],
     })
-    example_table = example_df.to_latex(header=["column1", "column2"], index=False, position="h")
+    example_table = example_df.to_latex(header=["column1", "column2", "column3", "column4"], index=False, position="h")
     data_dict["table"] = example_table
     for chart in CHARTS.keys():
         data_dict[chart] = CHARTS[chart]
