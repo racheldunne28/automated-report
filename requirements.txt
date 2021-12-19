@@ -1,0 +1,3 @@
+pandas
+pandoc-latex-environment
+pypandoc
