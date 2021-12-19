@@ -6,7 +6,10 @@ header-includes:
  ```{=latex}
   \usepackage{booktabs}
   \usepackage{float} 
+  \usepackage[margin=0.5in]{geometry}
   \usepackage{graphicx}
+  \usepackage{fontspec}
+  \setmainfont{Helvetica}
  ```
 pandoc-latex-environment:
   noteblock: [note]
@@ -16,11 +19,14 @@ pandoc-latex-environment:
   importantblock: [important]
 ...
 
-# $date: Test
+# $date: Example automated report
 
-\includegraphics[height=0.8\textheight]{$example_figure}
+\includegraphics[height=0.6\textheight]{$example_figure}
 
+\newpage
 
 # Table
 
 $table
+
+Here are some notes about this table

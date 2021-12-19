@@ -1,8 +1,8 @@
-import pandas as pd
-
 from pathlib import Path
-from pypandoc import convert_text
 from string import Template
+
+import pandas as pd
+from pypandoc import convert_text
 
 from assets import EXAMPLE_FIGURE
 
@@ -17,16 +17,31 @@ EXTRA_ARGS = [
     "pandoc-latex-environment",
 ]
 
+
 def get_data_dict():
     date = pd.Timestamp.today().strftime("%d %B %Y")
-    data_dict = {
-        "date": date
-    }
-    example_df = pd.DataFrame({
-        "column1": ["A", "B"],
-        "column2": [1, 2],
-    })
-    example_table = example_df.to_latex(header=["column1", "column2"], index=False, position="h")
+    data_dict = {"date": date}
+    example_df = pd.DataFrame(
+        {
+            "column1": ["A", "B", "C", "D", "E", "F", "G"],
+            "column2": [1, 2, 3, 4, 5, 6, 7],
+            "column3": [
+                "red",
+                "blue",
+                "orange",
+                "green",
+                "yellow",
+                "purple",
+                "pink",
+            ],
+            "column4": [7, 6, 5, 4, 3, 2, 1],
+        }
+    )
+    example_table = example_df.to_latex(
+        header=["column1", "column2", "column3", "column4"],
+        index=False,
+        position="h",
+    )
     data_dict["table"] = example_table
     for chart in CHARTS.keys():
         data_dict[chart] = CHARTS[chart]
@@ -52,7 +67,13 @@ def template_to_pdf(template_name, data_dict):
     template = get_template(template_name, "templates", ext=".md")
     template_str = template.safe_substitute(**data_dict)
     output = f"output/{template_name}.pdf"
-    convert_text(template_str, "pdf", "markdown", outputfile=output, extra_args=EXTRA_ARGS)
+    convert_text(
+        template_str,
+        "pdf",
+        "markdown",
+        outputfile=output,
+        extra_args=EXTRA_ARGS,
+    )
     return output
 
 
