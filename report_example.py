@@ -40,7 +40,7 @@ def get_data_dict():
     example_table = example_df.to_latex(
         header=["column1", "column2", "column3", "column4"],
         index=False,
-        position="center",
+        position="h",
     )
     data_dict["table"] = example_table
     for chart in CHARTS.keys():
