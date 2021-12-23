@@ -83,32 +83,15 @@ jobs:
   test:
       runs-on: ubuntu-latest
 
-      env:
-        SHA: ${{github.sha}}
-        LOCAL_REGISTRY: automated-report
-        LOCAL_REPOSITORY: tests
-        IMAGE_TAG: latest
+    steps:
 
-      steps:
-        - uses: actions/checkout@v2.4.0
+      - name: Checkout Code Repository
+        uses: actions/checkout@v2.4.0
 
-        - name: Set up Docker Buildx
-          id: buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Build tests
-          run: |
-            docker build \
-              --cache-from $LOCAL_REGISTRY/$LOCAL_REPOSITORY:$IMAGE_TAG \
-              --tag $LOCAL_REGISTRY/$LOCAL_REPOSITORY:$IMAGE_TAG \
-              --tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
-              --file ./docker/tests/Dockerfile \
-              ./
-
-        - name: Build tests
-          run: |
-            docker-compose -f docker-compose-utils.yml build tests
-
-        - name: Run tests
-          run: |
-            docker-compose -f docker-compose-utils.yml run tests
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2.3.1
+        with:
+          python-version: 3.8
+      
+      - name: Test with pytest
+        run: pytest tests
