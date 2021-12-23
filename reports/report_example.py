@@ -1,6 +1,10 @@
 
 import os, sys
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
+sys.path.insert(0, parent_dir_path)
+
 from pathlib import Path
 from string import Template
 
@@ -19,10 +23,6 @@ EXTRA_ARGS = [
     "--filter",
     "pandoc-latex-environment",
 ]
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
-sys.path.insert(0, parent_dir_path)
 
 
 def get_data_dict():
