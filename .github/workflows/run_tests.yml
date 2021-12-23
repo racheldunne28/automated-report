@@ -26,6 +26,9 @@ jobs:
       - name: Install flake8
         run: |
           pip install --upgrade --upgrade-strategy eager flake8 flake8-print flake8-blind-except pep8-naming
+      
+      - name: Ignore E402
+        run: flake8 --ignore=E402
 
       - name: Lint with flake8
         run: flake8
