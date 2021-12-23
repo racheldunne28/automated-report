@@ -81,7 +81,7 @@ jobs:
         run: isort --check .
 
   test:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -94,4 +94,4 @@ jobs:
           python-version: 3.8
       
       - name: Test with pytest
-        run: pytest tests
+        run: pytest tests/test_report_example.py
