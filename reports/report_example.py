@@ -11,7 +11,7 @@ from string import Template
 import pandas as pd
 from pypandoc import convert_text
 
-from assets import EXAMPLE_FIGURE
+from reports.assets import EXAMPLE_FIGURE
 
 CHARTS = {
     "example_figure": EXAMPLE_FIGURE,
