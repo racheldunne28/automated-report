@@ -11,6 +11,7 @@ parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 sys.path.insert(0, parent_dir_path)
 
 from reports.assets import EXAMPLE_FIGURE  # noqa
+from reports.s3_simple import get_s3_data  # noqa
 
 CHARTS = {
     "example_figure": EXAMPLE_FIGURE,
@@ -22,7 +23,6 @@ EXTRA_ARGS = [
     "--filter",
     "pandoc-latex-environment",
 ]
-
 
 def get_data_dict():
     date = pd.Timestamp.today().strftime("%d %B %Y")
@@ -49,6 +49,13 @@ def get_data_dict():
         position="h",
     )
     data_dict["table"] = example_table
+    s3_df = get_s3_data("overview_2021-11-08.csv").head(10)
+    s3_table = s3_df.to_latex(
+        header=list(s3_df.columns),
+        index=False,
+        position="h",
+    )
+    data_dict["s3_table"] = s3_table
     for chart in CHARTS.keys():
         data_dict[chart] = CHARTS[chart]
     return data_dict
