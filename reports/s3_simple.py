@@ -15,6 +15,5 @@ def get_s3_data(key):
         aws_secret_access_key=AWS_ACCESS_SECRET,
     )
     response = s3_client.get_object(Bucket=AWS_S3_BUCKET, Key=key)
-    status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
     df = pd.read_csv(response.get("Body"))
     return df
