@@ -30,3 +30,11 @@ pandoc-latex-environment:
 $table
 
 Here are some notes about this table
+
+\newpage
+
+# S3 table
+
+$s3_table
+
+Here are some notes about this table

@@ -9,6 +9,6 @@ from reports.report_example import get_data_dict  # noqa
 
 
 def test_get_data_dict():
-    dd = get_data_dict()
+    dd = get_data_dict(s3=False)
     for k in dd:
         assert isinstance(dd[k], str)
