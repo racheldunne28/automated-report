@@ -24,6 +24,7 @@ EXTRA_ARGS = [
     "pandoc-latex-environment",
 ]
 
+
 def get_data_dict():
     date = pd.Timestamp.today().strftime("%d %B %Y")
     data_dict = {"date": date}
