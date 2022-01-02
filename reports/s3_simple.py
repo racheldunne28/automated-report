@@ -3,8 +3,12 @@ import os
 import boto3
 import pandas as pd
 
-AWS_ACCESS_KEY = os.environ["AWS_PERSONAL"]
-AWS_ACCESS_SECRET = os.environ["AWS_PERSONAL_SECRET"]
+try:
+    AWS_ACCESS_KEY = os.environ["AWS_PERSONAL"]
+    AWS_ACCESS_SECRET = os.environ["AWS_PERSONAL_SECRET"]
+except KeyError:
+    AWS_ACCESS_KEY = None
+    AWS_ACCESS_SECRET = None
 AWS_S3_BUCKET = "racheldunne-test"
 
 
