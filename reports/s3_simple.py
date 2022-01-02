@@ -16,9 +16,5 @@ def get_s3_data(key):
     )
     response = s3_client.get_object(Bucket=AWS_S3_BUCKET, Key=key)
     status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
-    if status == 200:
-        print(f"Successful S3 get_object response. Status - {status}")
-        df = pd.read_csv(response.get("Body"))
-    else:
-        print(f"Unsuccessful S3 get_object response. Status - {status}")
+    df = pd.read_csv(response.get("Body"))
     return df
